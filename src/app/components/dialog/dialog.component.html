@@ -1,0 +1,45 @@
+<!-- 
+<mat-card>
+    <mat-card-title>
+        <h2>{{titulo}}</h2>
+    </mat-card-title>    
+    <mat-card-content >
+        <div class="row">
+            <div class="col-sm-6">
+                <button mat-stroked-button color="primary" (click)="aceptar()">Aceptar</button>
+            </div>
+            <div class="col-sm-6">
+                <button mat-stroked-button (click)="cancelar()">Cancelar</button>
+            </div>
+        </div>        
+    </mat-card-content>
+</mat-card> -->
+
+    <!-- <title>
+        <h1> {{titulo}}</h1> 
+    <title>
+    
+    <mat-dialog-content>
+        <p>{{mensaje}}</p>
+    </mat-dialog-content> >
+    
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
+        
+        <button mat-button (click)="cancelar()">Cancelar</button>
+        
+    </mat-dialog-actions> -->
+
+
+    <h1 mat-dialog-title>
+        {{titulo}}
+      </h1>
+      
+      <div mat-dialog-content>
+        <p>{{mensaje}}</p>
+      </div>
+      
+      <div mat-dialog-actions>
+        <button mat-button (click)="cancelar()">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
+      </div>

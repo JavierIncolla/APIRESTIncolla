@@ -1,0 +1,51 @@
+<div class="col-sm-12">
+    <br>
+  <div class="col-sm-12">
+      <h1 style="text-align: center;">Administración de Cursos</h1>
+  </div>
+  <div class="col-sm-12 text-end">
+      <button mat-raised-button color="primary" (click)="nuevoCurso()"><mat-icon>add</mat-icon> Agregar nuevo Curso</button>
+  </div>
+<br>  
+  <div class="col-sm-12">
+      <table mat-table [dataSource]="dataSource" #table class="tabla" >
+          <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> Alumno Nro </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+          </ng-container>
+          <ng-container matColumnDef="descripcion">
+              <th mat-header-cell *matHeaderCellDef> Descripción </th>
+              <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+          </ng-container>
+          <ng-container matColumnDef="nombreProfesor">
+            <th mat-header-cell *matHeaderCellDef> Nombre del Profesor </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombreProfesor}} </td>
+          </ng-container>
+          <ng-container matColumnDef="inicio">
+              <th mat-header-cell *matHeaderCellDef> Fecha de inicio </th>
+              <td mat-cell *matCellDef="let element"> {{element.inicio | date:'dd MMMM yyyy'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones" stickyEnd>
+              <th mat-header-cell *matHeaderCellDef> Acciones </th>
+              <td mat-cell *matCellDef="let element" class="text-end">                  
+                  <mat-icon (click)="verCurso(element)" style="cursor: pointer;">view_quilt</mat-icon>&nbsp;
+                  <mat-icon (click)="editarCurso(element)" style="cursor: pointer;">edit</mat-icon>&nbsp;    
+                  <mat-icon (click)="eliminarCurso(element)" style="cursor: pointer;">delete</mat-icon>                  
+              </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[3, 5, 10, 20]"
+               showFirstLastButtons 
+               aria-label="Seleccione la pagina de Cursos">
+      </mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="col-sm-12">
+    <br>
+  <div class="col-sm-12">
+      <h1 style="text-align: center;">Administración de Inscripciones</h1>
+  </div>
+  <div class="col-sm-12 text-end">
+      <button mat-raised-button color="primary" (click)="nuevaInscripcion()"><mat-icon>add</mat-icon> Agregar nueva inscripción</button>
+  </div>
+<br>  
+  <div class="col-sm-12">
+      <table mat-table [dataSource]="dataSource" #table class="tabla" >
+          <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef>Nro de inscripcion </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="idCurso">
+              <th mat-header-cell *matHeaderCellDef> Nro del Curso </th>
+              <td mat-cell *matCellDef="let element"> {{element.idCurso}} </td>
+          </ng-container>
+          <ng-container matColumnDef="idAlumno">
+              <th mat-header-cell *matHeaderCellDef> Nro del Alumno </th>
+              <td mat-cell *matCellDef="let element"> {{element.idAlumno}} </td>
+          </ng-container>
+          <ng-container matColumnDef="calificacionAlumno">
+            <th mat-header-cell *matHeaderCellDef> Calificación del Alumno </th>
+            <td mat-cell *matCellDef="let element"> {{element.calificacionAlumno}} </td>
+          </ng-container>
+          <ng-container matColumnDef="fechaInscripcion">
+              <th mat-header-cell *matHeaderCellDef> Fecha de Inscripción </th>
+              <td mat-cell *matCellDef="let element"> {{element.fechaInscripcion | date:'dd MMMM yyyy'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones" stickyEnd>
+              <th mat-header-cell *matHeaderCellDef> Acciones </th>
+              <td mat-cell *matCellDef="let element" class="text-end">                  
+                  <mat-icon (click)="verInscripcion(element)" style="cursor: pointer;">view_quilt</mat-icon>&nbsp;
+                  <mat-icon (click)="editarInscripcionCurso(element)" style="cursor: pointer;">edit</mat-icon>&nbsp;    
+                  <mat-icon (click)="eliminarInscripcion(element)" style="cursor: pointer;">delete</mat-icon>                  
+              </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[3, 5, 10, 20]"
+               showFirstLastButtons 
+               aria-label="Seleccione la pagina de Inscripciones">
+      </mat-paginator>
+  </div>
+</div> 

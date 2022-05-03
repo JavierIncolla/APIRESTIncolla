@@ -1,0 +1,73 @@
+<mat-dialog-content>
+    <mat-card>
+        <mat-card-title>
+            <h2>{{tituloModal}}</h2>
+        </mat-card-title>
+
+        <mat-card-content>
+
+            <form [formGroup]="formularioInscripcion" (ngSubmit)="validado()">
+                
+                <div *ngIf="inscripcion.id > 0" class="col-sm-12">
+                    <mat-form-field appearance="fill"  class="col-md-12">
+                        <mat-label>inscripcion Número</mat-label>
+                        <input matInput formControlName="id" [(ngModel)]="inscripcion.id" readonly>
+                    </mat-form-field>
+                </div>
+            
+                <!-- Id del Curso  -->
+                <div class="row">
+                    <mat-form-field appearance="fill"  class="col-md-6" >
+                        <mat-label>Número del Curso</mat-label>                    
+                        <input type="text" formControlName="idCurso" [(ngModel)]="inscripcion.idCurso" matInput [readonly]="soloLectura">        
+                        <mat-error *ngIf="formularioInscripcion.controls['idCurso'].errors?.['required']">El campo Número del Curso es requerido</mat-error>
+                        <mat-error *ngIf="formularioInscripcion.controls['idCurso'].errors?.['pattern']">El campo Número del Curso debe ser númerico</mat-error>
+                    </mat-form-field>
+                </div>               
+            
+                <!-- Id del Alumno -->
+                <div class="row">
+                    <mat-form-field appearance="fill"  class="col-md-6">
+                        <mat-label>Número del Alumno</mat-label>
+                        <input matInput formControlName="idAlumno" [(ngModel)]="inscripcion.idAlumno" [readonly]="soloLectura">
+                        <mat-error *ngIf="formularioInscripcion.controls['idAlumno'].errors?.['required']">El campo Número del Alumno es requerido</mat-error>
+                        <mat-error *ngIf="formularioInscripcion.controls['idAlumno'].errors?.['pattern']">El campo Número del Alumno debe ser númerico</mat-error>
+                    </mat-form-field>             
+                </div>               
+            
+                <!-- Calificación del Alumno -->
+                <div class="row">        
+                    <mat-form-field appearance="fill" class="col-md-6">
+                        <mat-label>Calificación del Alumno</mat-label>
+                        <input matInput formControlName="calificacionAlumno" [(ngModel)]="inscripcion.calificacionAlumno" [readonly]="soloLectura">                         
+                        <mat-error *ngIf="formularioInscripcion.controls['calificacionAlumno'].errors?.['required']">El campo Calificación del Alumno es requerido</mat-error>
+                        <mat-error *ngIf="formularioInscripcion.controls['calificacionAlumno'].errors?.['pattern']">El campo Calificación del Alumno debe ser númerico</mat-error>
+                    </mat-form-field>
+                </div>
+            
+                <!-- Fecha de Inscripción -->
+                <div class="row">            
+                    <mat-form-field appearance="fill"  class="col-md-6">
+                        <mat-label>Fecha de Inscripción</mat-label>
+                        <!-- <input matInput type="date" formControlName="inicio" [ngModel]="cursoCero.inicio | date:'yyyy-MM-dd' : 'UTC'" (ngModelChange)=" cursoCero.inicio = $event" [readonly]="soloLectura"> -->
+                        <input matInput [matDatepicker]="picker1" formControlName="fechaInscripcion" [(ngModel)]="inscripcion.fechaInscripcion">
+                        <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                        <mat-datepicker #picker1 ></mat-datepicker>
+                        <mat-error *ngIf="formularioInscripcion.controls['fechaInscripcion'].errors?.['required']">El campo Fecha de Inscripción es requerido</mat-error>
+                        <!-- <mat-error *ngIf="formularioInscripcion.controls['inicio'].errors?.['nullValidator']">El campo Fecha de Inicio no puede ser nulo</mat-error> -->
+                    </mat-form-field>
+                </div>
+               
+                <div class="col-sm-12 text-end py-2 px-2">
+                    <button *ngIf="!soloLectura" type="submit" mat-raised-button color="primary">Confirmar</button>
+                    <button *ngIf="soloLectura" type="submit" mat-raised-button color="primary">Cerrar</button>
+                </div>
+            </form>
+
+        </mat-card-content>
+
+        <mat-card-footer>
+           
+        </mat-card-footer>
+    </mat-card>
+</mat-dialog-content>
